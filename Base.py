@@ -9,9 +9,6 @@
 
 # Dictionary
 
-from turtle import title
-
-
 grade_dict = {
     "A": 4.0,
     "A-": 3.7,
