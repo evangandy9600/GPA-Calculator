@@ -77,7 +77,7 @@ def get_grade():
                 credits = int(input(f"{name} credits: "))
                 grade = input(f"{name} letter grade: ")
                 grade_weight = input("Input (Reg), (Hon) or (AP): ")
-                print(f"{grade_weight.upper} {name} -> Credits: ({credits}) Letter Grade: ({grade.upper})")
+                # print(f"{grade_weight.upper} {name} -> Credits: ({credits}) Letter Grade: ({grade.upper})")
                 # Credit vaules and class difficulty
                 sem_credit_values.append(credits) # save credits in array
                 get_grade_weight = weight_dict.get(grade_weight.upper()) # save class difficulty in var
