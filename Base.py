@@ -8,7 +8,6 @@
     # Step 5) If you prefer to calculate your unweighted GPA, enter (U) for all classes
 
 # Dictionary
-
 grade_dict = {
     "A": 4.0,
     "A-": 3.7,
@@ -23,7 +22,6 @@ grade_dict = {
     "D-": 0.7,
     "F": 0
 }
-
 grade_dict2 = {
     "A": 4.0,
     "A-": 3.67,
@@ -38,11 +36,10 @@ grade_dict2 = {
     "D-": 0.67,
     "F": 0    
 }
-
 weight_dict = {
-    "AP": 1.0,
-    "HON": 0.5,
-    "REG": 0.0,
+"AP": 1.0,
+"HON": 0.5,
+"REG": 0.0,
 }
 
 # Arrays
@@ -51,7 +48,6 @@ point_values = []
 weighted_point_values = []
 
 # Retrives Information
-
 def get_grade():
     gpa_scale = int(input("(0.67 & 0.34) or (0.7 & 0.3) (Enter (1) or (2): "))
     enter = 0
@@ -59,88 +55,90 @@ def get_grade():
     # Semester
     while sem_class > enter:
         enter += 1
-        current_sem = enter + 1
+        current_sem = enter + 1 # work
+
+        # Semester Array
         sem_credit_values = []
         sem_point_values = []
         sem_weighted_point_values = []
 
-
         def class_grade(): # Gets each classes grade
             enter2 = 0
             num_class = int(input("Total classes this semester: "))
-            # Semester Classes
 
+            # Get class info
             while num_class > enter2:
                 enter2 += 1
-                # Get class info
+                # Input
                 name = input("Class: ")
                 credits = int(input(f"{name} credits: "))
                 grade = input(f"{name} letter grade: ")
                 grade_weight = input("Input (Reg), (Hon) or (AP): ")
-                # print(f"{grade_weight.upper} {name} -> Credits: ({credits}) Letter Grade: ({grade.upper})")
+                print(f"{grade_weight.upper()} {name} -> Credits: ({credits}) Letter Grade: ({grade.upper()})")
+                
                 # Credit vaules and class difficulty
                 sem_credit_values.append(credits) # save credits in array
                 get_grade_weight = float(weight_dict.get(grade_weight.upper())) # save class difficulty in var
 
-                # Dict 1 or 2 calculations
+                # Dictionary based calculations
+                def course_value(dict): # Parent function
+                    get_grade_point = float(dict.get(grade.upper()))
+                    uw = credits * (get_grade_point) # Unweighted grade point calculation
+                    w = credits * (get_grade_point + get_grade_weight) # Weighted grade point calculation
+                    sem_point_values.append(uw)
+                    sem_weighted_point_values.append(w)
+                    return
 
+                # Dictionary dependency
                 if gpa_scale == 1:
-                    # Finds weighted value of course      
-                    get_grade_point = float(grade_dict2.get(grade.upper()))
-                    uw = credits * get_grade_point
-                    w = credits * (get_grade_point + get_grade_weight)
-                    # append varibales to respective array
-                    sem_point_values.append(uw)
-                    sem_weighted_point_values.append(w)
+                    course_value(grade_dict2)
                 elif gpa_scale == 2:
-                    get_grade_point = float(grade_dict.get(grade.upper()))
-                    uw = credits * get_grade_point
-                    w = credits * (get_grade_point + get_grade_weight)
-                    # append varibales to respective array
-                    sem_point_values.append(uw)
-                    sem_weighted_point_values.append(w)
-
-
+                    course_value(grade_dict)
+                return
         class_grade()
 
-    # Semester
+        # Semester: Retrive totals from credit, grade/point value arrays (NOT WORKING)
+        '''
+        def GPA_calculator(credit_val, point_val, w_point_val):
+        print(credit_val, point_val, w_point_val)
+        x = sum(credit_val)
+        y = sum(point_val)
+        z = sum(point_val)
+        uw_gpa = y / x # unweighted calculation
+        w_gpa = z / x # weighted calculation
+        print(f"This is test {uw_gpa}")
+        print(f"This is test {w_gpa}")
+        return
 
-    # Semester: Retrive totals from credit, grade/point value arrays
-    x = sum(sem_credit_values)
-    y = sum(sem_point_values)
-    z = sum(sem_weighted_point_values)
-    # Semester: GPA calculations
-    uw_gpa = y / x # unweighted calculation
-    w_gpa = z / x # weighted calculation
-    # Semester: Append semester credits to total credits
-    credit_values.append(x) # sends credit values to total calculation
-    point_values.append(y) # sends point values to total calculation
-    weighted_point_values.append(z) # sends weighted point values to total calculation
-    # Semester: Print semester GPA
-    print(f"Semester Unweighted: {round(uw_gpa, 2)}")
-    print(f"Semester Weighted: {round(w_gpa, 2)}")
+        # credit_val = sem_credit_values, point_val = sem_point_values, w_point_val = sem_weighted_point_values
+        GPA_calculator(credit_val = sem_credit_values, point_val = sem_point_values, w_point_val = sem_weighted_point_values)
+        '''
 
+        # Semester: Calculations
+        x = sum(sem_credit_values)
+        y = sum(sem_point_values)
+        z = sum(sem_weighted_point_values)
+        uw_gpa = y / x # unweighted calculation
+        w_gpa = z / x # weighted calculation
+
+        # Semester: Append
+        credit_values.append(x)
+        point_values.append(y)
+        weighted_point_values.append(z)
+        
+        # Semester: Print semester GPA
+        print(f"Semester Unweighted: {round(uw_gpa, 2)}")
+        print(f"Semester Weighted: {round(w_gpa, 2)}")
 
 get_grade() # runs GPA calculator
 
-# extra array consoles
-'''
-print(credit_values)
-print(point_values)
-print(weighted_point_values)
-print(all_sem_gpa)
-print(weighted_all_sem_gpa)     
-'''
-# Calculates final GPA
-
-# All
-# All: Retrive totals from credit, grade/point value arrays
+# All: Retrive totals arrays
 x = sum(credit_values)
 y = sum(point_values)
 z = sum(weighted_point_values)
-# All: GPA calculations
 uw_gpa = y / x # unweighted calculation
 w_gpa = z / x # weighted calculation
-# All: Print all GPA
+
+# All: Print GPA
 print(f"All Semesters Unweighted: {round(uw_gpa, 2)}")
 print(f"All Semesters Weighted: {round(w_gpa, 2)}")
