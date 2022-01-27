@@ -80,7 +80,7 @@ def get_grade():
                 # print(f"{grade_weight.upper} {name} -> Credits: ({credits}) Letter Grade: ({grade.upper})")
                 # Credit vaules and class difficulty
                 sem_credit_values.append(credits) # save credits in array
-                get_grade_weight = weight_dict.get(grade_weight.upper()) # save class difficulty in var
+                get_grade_weight = float(weight_dict.get(grade_weight.upper())) # save class difficulty in var
 
                 # Dict 1 or 2 calculations
 
