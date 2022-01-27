@@ -46,6 +46,7 @@ def get_grade():
     gpa_scale = int(input("(0.67 & 0.34) or (0.7 & 0.3) (Enter (1) or (2): "))
     enter = 0
     sem_class = int(input("Total number of semesters taken: "))
+
     # Semester
     while sem_class > enter:
         enter += 1
@@ -92,7 +93,6 @@ def get_grade():
 
         # Semester: Retrive totals from credit, grade/point value arrays (NOT WORKING)
         def GPA_calculator(credit_val, point_val, w_point_val):
-            print(credit_val, point_val, w_point_val)
             x = sum(credit_val)
             y = sum(point_val)
             z = sum(w_point_val)
@@ -101,8 +101,8 @@ def get_grade():
             credit_values.append(x)
             point_values.append(y)
             weighted_point_values.append(z)
-            print(f"This is test {uw_gpa}")
-            print(f"This is test {w_gpa}")
+            print(f"Semester ({current_sem}): {uw_gpa}")
+            print(f"Semester ({current_sem}): {w_gpa}")
 
         # credit_val = sem_credit_values, point_val = sem_point_values, w_point_val = sem_weighted_point_values
         GPA_calculator(credit_val = sem_credit_values, point_val = sem_point_values, w_point_val = sem_weighted_point_values)
