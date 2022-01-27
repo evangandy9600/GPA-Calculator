@@ -1,11 +1,5 @@
 # Evan's GPA Calculator
 # Formula: (Grade point value * credits) / (total number of credits)
-# How to run in ***VSCODE LOCALLY***:
-    # Step 1) Click "F5" on keyboard to open terminal
-    # Step 2) Run as python file
-    # Step 3) In the bottom bar input values as you are prompted in the terminal window
-    # Step 4) To weight a class, enter (W) when promted with "GPA Type: Unweighted (U) or Weighted (W) "
-    # Step 5) If you prefer to calculate your unweighted GPA, enter (U) for all classes
 
 # Dictionary
 grade_dict = {
@@ -39,7 +33,7 @@ grade_dict2 = {
 weight_dict = {
 "AP": 1.0,
 "HON": 0.5,
-"REG": 0.0,
+"REG": 0.0
 }
 
 # Arrays
@@ -87,48 +81,31 @@ def get_grade():
                     w = credits * (get_grade_point + get_grade_weight) # Weighted grade point calculation
                     sem_point_values.append(uw)
                     sem_weighted_point_values.append(w)
-                    return
 
                 # Dictionary dependency
                 if gpa_scale == 1:
                     course_value(grade_dict2)
                 elif gpa_scale == 2:
                     course_value(grade_dict)
-                return
+
         class_grade()
 
         # Semester: Retrive totals from credit, grade/point value arrays (NOT WORKING)
-        '''
         def GPA_calculator(credit_val, point_val, w_point_val):
-        print(credit_val, point_val, w_point_val)
-        x = sum(credit_val)
-        y = sum(point_val)
-        z = sum(point_val)
-        uw_gpa = y / x # unweighted calculation
-        w_gpa = z / x # weighted calculation
-        print(f"This is test {uw_gpa}")
-        print(f"This is test {w_gpa}")
-        return
+            print(credit_val, point_val, w_point_val)
+            x = sum(credit_val)
+            y = sum(point_val)
+            z = sum(w_point_val)
+            uw_gpa = y / x # unweighted calculation
+            w_gpa = z / x # weighted calculation
+            credit_values.append(x)
+            point_values.append(y)
+            weighted_point_values.append(z)
+            print(f"This is test {uw_gpa}")
+            print(f"This is test {w_gpa}")
 
         # credit_val = sem_credit_values, point_val = sem_point_values, w_point_val = sem_weighted_point_values
         GPA_calculator(credit_val = sem_credit_values, point_val = sem_point_values, w_point_val = sem_weighted_point_values)
-        '''
-
-        # Semester: Calculations
-        x = sum(sem_credit_values)
-        y = sum(sem_point_values)
-        z = sum(sem_weighted_point_values)
-        uw_gpa = y / x # unweighted calculation
-        w_gpa = z / x # weighted calculation
-
-        # Semester: Append
-        credit_values.append(x)
-        point_values.append(y)
-        weighted_point_values.append(z)
-        
-        # Semester: Print semester GPA
-        print(f"Semester Unweighted: {round(uw_gpa, 2)}")
-        print(f"Semester Weighted: {round(w_gpa, 2)}")
 
 get_grade() # runs GPA calculator
 
