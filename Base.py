@@ -39,7 +39,7 @@ grade_dict2 = {
 weight_dict = {
 "AP": 1.0,
 "HON": 0.5,
-"REG": 0.0
+"REG": 0.0,
 }
 
 # Arrays
