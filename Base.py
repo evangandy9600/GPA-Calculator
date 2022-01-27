@@ -117,8 +117,8 @@ def get_grade():
     point_values.append(y) # sends point values to total calculation
     weighted_point_values.append(z) # sends weighted point values to total calculation
     # Semester: Print semester GPA
-    print(round(uw_gpa, 2))
-    print(round(w_gpa, 2))
+    print(f"Semester Unweighted: {round(uw_gpa, 2)}")
+    print(f"Semester Weighted: {round(w_gpa, 2)}")
 
 
 get_grade() # runs GPA calculator
@@ -142,5 +142,5 @@ z = sum(weighted_point_values)
 uw_gpa = y / x # unweighted calculation
 w_gpa = z / x # weighted calculation
 # All: Print all GPA
-print(round(uw_gpa, 2))
-print(round(w_gpa, 2))
+print(f"All Semesters Unweighted: {round(uw_gpa, 2)}")
+print(f"All Semesters Weighted: {round(w_gpa, 2)}")
