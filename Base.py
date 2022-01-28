@@ -35,7 +35,7 @@ standard_dict = {
 
 weight_dict = {
 "AP": 1.0,
-"HON": 0.5,
+"HON": 1.0,
 "REG": 0.0
 }
 
