@@ -70,9 +70,9 @@ def get_grade():
                 # Student input
                 name = input(f"\nClass: ")
                 grade_weight = input(f"\tInput (Reg), (Hon) or (AP): ")
-                credits = int(input(f"\t{grade_weight.upper()} {name} credits: "))
-                grade = input(f"\t{grade_weight.upper()} {name} letter grade: ")
-                print(f"\t{grade_weight.upper()} {name} -> Credits: ({credits}) Letter Grade: ({grade.upper()})")
+                credits = int(input(f"\t{grade_weight.upper()} {name.capitalize()} credits: "))
+                grade = input(f"\t{grade_weight.upper()} {name.capitalize()} letter grade: ")
+                print(f"\t{grade_weight.upper()} {name.capitalize()} -> Credits: ({credits}) Letter Grade: ({grade.upper()})")
                 
                 # Credits and class difficulty calculations
                 sem_credit_values.append(credits) # save credits in array
