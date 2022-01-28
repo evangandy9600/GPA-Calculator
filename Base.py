@@ -46,14 +46,14 @@ weighted_point_values = []
 
 # Retrives Grade Information
 def get_grade():
-    gpa_scale = int(input(f"Select (1) for standard scale or select (2): "))
+    gpa_scale = int(input(f"Enter (1) for standard scale or for user scale enter (2): "))
     enter = 0
     sem_class = int(input("Total number of semesters taken: "))
 
     # Semester
     while sem_class > enter:
         enter += 1
-        current_sem = enter + 1 # keeps semester updates
+        current_sem = enter # keeps semester updates
 
         # Semester Array
         sem_credit_values = []
@@ -62,17 +62,17 @@ def get_grade():
 
         def class_grade(): # Gets each classes grade
             enter2 = 0
-            num_class = int(input("Total classes this semester: "))
+            num_class = int(input(f"Total classes in semester ({current_sem}): "))
 
             # Get class info
             while num_class > enter2:
                 enter2 += 1
                 # Student input
-                name = input("Class: ")
-                credits = int(input(f"{name} credits: "))
-                grade = input(f"{name} letter grade: ")
-                grade_weight = input("Input (Reg), (Hon) or (AP): ")
-                print(f"\n{grade_weight.upper()} {name} -> Credits: ({credits}) Letter Grade: ({grade.upper()})\n")
+                name = input(f"\nClass: ")
+                grade_weight = input(f"\tInput (Reg), (Hon) or (AP): ")
+                credits = int(input(f"\t{grade_weight.upper()} {name} credits: "))
+                grade = input(f"\t{grade_weight.upper()} {name} letter grade: ")
+                print(f"\t{grade_weight.upper()} {name} -> Credits: ({credits}) Letter Grade: ({grade.upper()})")
                 
                 # Credits and class difficulty calculations
                 sem_credit_values.append(credits) # save credits in array
@@ -104,8 +104,8 @@ def get_grade():
             credit_values.append(x)
             point_values.append(y)
             weighted_point_values.append(z)
-            print(f"\nSemester ({current_sem}): {uw_gpa}")
-            print(f"Semester ({current_sem}): {w_gpa}\n")
+            print(f"\nSemester ({current_sem}) Unweighted: {uw_gpa}")
+            print(f"Semester ({current_sem}) Weighted: {w_gpa}\n")
 
         # credit_val = sem_credit_values, point_val = sem_point_values, w_point_val = sem_weighted_point_values
         GPA_calculator(credit_val = sem_credit_values, point_val = sem_point_values, w_point_val = sem_weighted_point_values)
@@ -120,5 +120,5 @@ uw_gpa = y / x # unweighted calculation
 w_gpa = z / x # weighted calculation
 
 # All: Print GPA
-print(f"All Semesters Unweighted: {round(uw_gpa, 2)}")
-print(f"All Semesters Weighted: {round(w_gpa, 2)}")
+print(f"Final GPA Unweighted: {round(uw_gpa, 2)}")
+print(f"Final GPA Weighted: {round(w_gpa, 2)}")
