@@ -2,7 +2,23 @@
 # Formula: (Grade point value * credits) / (total number of credits)
 
 # Dictionary
-grade_dict = {
+user_dict = { # Change this dictionary to match unweighted 4.0 GPA scale
+    "A": 4.0, # A is worth 4 points always
+    "A-": 3.67,
+    "B+": 3.34,
+    "B": 3.0,
+    "B-": 2.67,
+    "C+": 2.34,
+    "C": 2.0,
+    "C-": 1.67,
+    "D+": 1.34,
+    "D": 1.0,
+    "D-": 0.67,
+    "F": 0 # F is worth 0 points always    
+}
+
+# It is reccomended that you do not adjust values below this line
+standard_dict = {
     "A": 4.0,
     "A-": 3.7,
     "B+": 3.3,
@@ -16,34 +32,21 @@ grade_dict = {
     "D-": 0.7,
     "F": 0
 }
-grade_dict2 = {
-    "A": 4.0,
-    "A-": 3.67,
-    "B+": 3.34,
-    "B": 3.0,
-    "B-": 2.67,
-    "C+": 2.34,
-    "C": 2.0,
-    "C-": 1.67,
-    "D+": 1.34,
-    "D": 1.0,
-    "D-": 0.67,
-    "F": 0    
-}
+
 weight_dict = {
 "AP": 1.0,
 "HON": 0.5,
 "REG": 0.0
 }
 
-# Arrays
+# Total GPA Arrays
 credit_values = []
 point_values = []
 weighted_point_values = []
 
-# Retrives Information
+# Retrives Grade Information
 def get_grade():
-    gpa_scale = int(input("(0.67 & 0.34) or (0.7 & 0.3) (Enter (1) or (2): "))
+    gpa_scale = int(input(f"Select (1) for standard scale or select (2): "))
     enter = 0
     sem_class = int(input("Total number of semesters taken: "))
 
@@ -64,14 +67,14 @@ def get_grade():
             # Get class info
             while num_class > enter2:
                 enter2 += 1
-                # Input
+                # Student input
                 name = input("Class: ")
                 credits = int(input(f"{name} credits: "))
                 grade = input(f"{name} letter grade: ")
                 grade_weight = input("Input (Reg), (Hon) or (AP): ")
                 print(f"{grade_weight.upper()} {name} -> Credits: ({credits}) Letter Grade: ({grade.upper()})")
                 
-                # Credit vaules and class difficulty
+                # Credits and class difficulty calculations
                 sem_credit_values.append(credits) # save credits in array
                 get_grade_weight = float(weight_dict.get(grade_weight.upper())) # save class difficulty in var
 
@@ -83,11 +86,11 @@ def get_grade():
                     sem_point_values.append(uw)
                     sem_weighted_point_values.append(w)
 
-                # Dictionary dependency
+                # Dictionary Based Calculations
                 if gpa_scale == 1:
-                    course_value(grade_dict2)
+                    course_value(standard_dict) # Using standard_dict to calculate GPA
                 elif gpa_scale == 2:
-                    course_value(grade_dict)
+                    course_value(user_dict) # Using user_dict to calculate GPA
 
         class_grade()
 
@@ -101,8 +104,8 @@ def get_grade():
             credit_values.append(x)
             point_values.append(y)
             weighted_point_values.append(z)
-            print(f"Semester ({current_sem}): {uw_gpa}")
-            print(f"Semester ({current_sem}): {w_gpa}")
+            print(f"\nSemester ({current_sem}): {uw_gpa}")
+            print(f"Semester ({current_sem}): {w_gpa}\n")
 
         # credit_val = sem_credit_values, point_val = sem_point_values, w_point_val = sem_weighted_point_values
         GPA_calculator(credit_val = sem_credit_values, point_val = sem_point_values, w_point_val = sem_weighted_point_values)
