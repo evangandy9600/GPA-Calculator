@@ -53,7 +53,7 @@ def get_grade():
     # Semester
     while sem_class > enter:
         enter += 1
-        current_sem = enter + 1 # work
+        current_sem = enter + 1 # keeps semester updates
 
         # Semester Array
         sem_credit_values = []
@@ -72,7 +72,7 @@ def get_grade():
                 credits = int(input(f"{name} credits: "))
                 grade = input(f"{name} letter grade: ")
                 grade_weight = input("Input (Reg), (Hon) or (AP): ")
-                print(f"{grade_weight.upper()} {name} -> Credits: ({credits}) Letter Grade: ({grade.upper()})")
+                print(f"\n{grade_weight.upper()} {name} -> Credits: ({credits}) Letter Grade: ({grade.upper()})\n")
                 
                 # Credits and class difficulty calculations
                 sem_credit_values.append(credits) # save credits in array
