@@ -17,22 +17,6 @@ user_dict = { # Change this dictionary to match unweighted 4.0 GPA scale
     "F": 0 # F is worth 0 points always    
 }
 
-# It is reccomended that you do not adjust values below this line
-standard_dict = {
-    "A": 4.0,
-    "A-": 3.7,
-    "B+": 3.3,
-    "B": 3.0,
-    "B-": 2.7,
-    "C+": 2.3,
-    "C": 2.0,
-    "C-": 1.7,
-    "D+": 1.3,
-    "D": 1.0,
-    "D-": 0.7,
-    "F": 0
-}
-
 weight_dict = {
 "AP": 1.0,
 "HON": 1.0,
@@ -44,14 +28,28 @@ credit_values = []
 point_values = []
 weighted_point_values = []
 
+def GPA_calculator(credit_val, point_val, w_point_val, type_gpa):
+    x = sum(credit_val)
+    y = sum(point_val)
+    z = sum(w_point_val)
+    uw_gpa = y / x # unweighted calculation
+    w_gpa = z / x # weighted calculation
+    if type_gpa == "Semester":
+        credit_values.append(x)
+        point_values.append(y)
+        weighted_point_values.append(z)
+        print(f"\n{type_gpa} Unweighted: {uw_gpa}")
+        print(f"{type_gpa} Weighted: {w_gpa}\n")
+    elif type_gpa == "Final":
+        print(f"Final GPA Unweighted: {round(uw_gpa, 2)}") # Print GPA
+        print(f"Final GPA Weighted: {round(w_gpa, 2)}") # Print GPA
+
 # Retrives Grade Information
 def get_grade():
-    gpa_scale = int(input(f"Enter (1) for standard scale or for user scale enter (2): "))
     enter = 0
-    sem_class = int(input("Total number of semesters taken: "))
+    sem_class = int(input("Total semesters taken: "))
 
-    # Semester
-    while sem_class > enter:
+    while sem_class > enter: # Semester
         enter += 1
         current_sem = enter # keeps semester updates
 
@@ -86,39 +84,12 @@ def get_grade():
                     sem_point_values.append(uw)
                     sem_weighted_point_values.append(w)
 
-                # Dictionary Based Calculations
-                if gpa_scale == 1:
-                    course_value(standard_dict) # Using standard_dict to calculate GPA
-                elif gpa_scale == 2:
-                    course_value(user_dict) # Using user_dict to calculate GPA
+
+                course_value(user_dict) # Using user_dict to calculate GPA
 
         class_grade()
 
-        # Semester: Retrive totals from credit, grade/point value arrays (NOT WORKING)
-        def GPA_calculator(credit_val, point_val, w_point_val):
-            x = sum(credit_val)
-            y = sum(point_val)
-            z = sum(w_point_val)
-            uw_gpa = y / x # unweighted calculation
-            w_gpa = z / x # weighted calculation
-            credit_values.append(x)
-            point_values.append(y)
-            weighted_point_values.append(z)
-            print(f"\nSemester ({current_sem}) Unweighted: {uw_gpa}")
-            print(f"Semester ({current_sem}) Weighted: {w_gpa}\n")
-
-        # credit_val = sem_credit_values, point_val = sem_point_values, w_point_val = sem_weighted_point_values
-        GPA_calculator(credit_val = sem_credit_values, point_val = sem_point_values, w_point_val = sem_weighted_point_values)
-
+        # Semester: Retrive totals from credit, grade/point value arrays
+        GPA_calculator(credit_val = sem_credit_values, point_val = sem_point_values, w_point_val = sem_weighted_point_values, type_gpa = "Semester")
 get_grade() # runs GPA calculator
-
-# All: Retrive totals arrays
-x = sum(credit_values)
-y = sum(point_values)
-z = sum(weighted_point_values)
-uw_gpa = y / x # unweighted calculation
-w_gpa = z / x # weighted calculation
-
-# All: Print GPA
-print(f"Final GPA Unweighted: {round(uw_gpa, 2)}")
-print(f"Final GPA Weighted: {round(w_gpa, 2)}")
+GPA_calculator(credit_val = credit_values, point_val = point_values, w_point_val = weighted_point_values, type_gpa = "Final")
