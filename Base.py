@@ -47,8 +47,8 @@ def GPA_calculator(credit_val, point_val, w_point_val, type_gpa, sem):
         print(f"Final GPA Weighted: {round(w_gpa, 2)}") # Print GPA
 
 def get_grade(enter):
-    sem_class = int(input("Total Semesters Taken: "))
     credit_type = input("Automatic Credit Entry? (Y/N): ")
+    sem_class = int(input("Total Semesters Taken: "))
 
     while sem_class > enter:
         enter += 1
@@ -75,12 +75,16 @@ def get_grade(enter):
                 print(f"\t{grade_weight.upper()} {name.capitalize()}: ({grade.upper()})")
 
                 sem_credit_values.append(credits)
-            
+
+                def weight_find(dict):
+                    get_grade_weight = float(dict.get(grade_weight.upper()))
+                    return get_grade_weight
+
                 def course_value(dict):
-                    get_grade_weight = float(weight_dict.get(grade_weight.upper()))
+                    course_weight = weight_find(weight_dict)
                     get_grade_point = float(dict.get(grade.upper()))
                     uw = credits * (get_grade_point) # Unweighted grade point calculation
-                    w_check = (get_grade_point + get_grade_weight)
+                    w_check = (get_grade_point + course_weight)
                     w = credits * w_check # Weighted grade point calculation
                     sem_point_values.append(uw)
                     sem_weighted_point_values.append(w)
