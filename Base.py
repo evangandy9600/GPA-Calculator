@@ -97,4 +97,4 @@ def get_grade(enter):
 get_grade(0)
 GPA_calculator(credit_val = credit_values, point_val = point_values, w_point_val = weighted_point_values, type_gpa = "Final", sem = 0)
 
-print(f"\nCopy the follow to save your data:\n\n{data_save}")
+print(f"\nCopy the follow to save your data:\n\n{data_save}\n")
