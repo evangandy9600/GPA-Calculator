@@ -39,8 +39,8 @@ def GPA_calculator(credit_val, point_val, w_point_val, type_gpa, sem):
         point_values.append(y)
         weighted_point_values.append(z)
 
-        print(f"\n{type_gpa} ({sem}) Unweighted: {uw_gpa}")
-        print(f"{type_gpa} ({sem}) Weighted: {w_gpa}\n")
+        print(f"\n{type_gpa} ({sem}) Unweighted: {round(uw_gpa, 2)}")
+        print(f"{type_gpa} ({sem}) Weighted: {round(w_gpa, 2)})\n")
 
     elif type_gpa == "Final":
         print(f"Final GPA Unweighted: {round(uw_gpa, 2)}") # Print GPA
