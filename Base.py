@@ -39,12 +39,20 @@ def GPA_calculator(credit_val, point_val, w_point_val, type_gpa, sem):
         point_values.append(y)
         weighted_point_values.append(z)
 
-        print(f"\n{type_gpa} ({sem}) Unweighted: {round(uw_gpa, 2)}")
-        print(f"{type_gpa} ({sem}) Weighted: {round(w_gpa, 2)})\n")
+        print(f"\n{type_gpa} ({sem}) Unweighted: {uw_gpa}")
+        print(f"{type_gpa} ({sem}) Weighted: {w_gpa}\n")
 
     elif type_gpa == "Final":
         print(f"Final GPA Unweighted: {round(uw_gpa, 2)}") # Print GPA
         print(f"Final GPA Weighted: {round(w_gpa, 2)}") # Print GPA
+
+def data_calc(value_type):
+    sum_of = 0
+    for a in data_save:
+        for b in data_save[0]:
+            z = b[value_type]
+            sum_of += z
+    return sum_of
 
 def get_grade(enter):
     credit_type = input("Automatic Credit Entry? (Y/N): ")
